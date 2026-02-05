@@ -13,7 +13,8 @@ services:
   backend:
     build: ./backend/
     env_file: .env
-    depends_on: db
+    depends_on:
+      - db
     # Тут подключаем volume к backend
     volumes:
       - static:/backend_static
@@ -22,7 +23,8 @@ services:
     env_file: .env
     build: ./frontend/
     command: cp -r /app/build/. /frontend_static/
-    depends_on: backend
+    depends_on:
+      - backend
     volumes:
       - static:/frontend_static
 
@@ -31,7 +33,6 @@ services:
     build: ./gateway/
     env_file: .env
     # А тут подключаем volume со статикой к gateway
-    depends_on: db
     volumes:
       - static:/staticfiles
     ports:
