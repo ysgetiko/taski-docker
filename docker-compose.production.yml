@@ -26,8 +26,6 @@ services:
       - static_volume:/frontend_static
   gateway:
     image: ysgetiko/taski_gateway  # Качаем с Docker Hub
-    env_file: .env
-    depends_on: db
     volumes:
       - static_volume:/staticfiles/
     ports:
